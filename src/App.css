@@ -4,7 +4,9 @@
   width: 100000px;
   height: 70px;
   padding: 0 40px;
-  position: relative;
+  position: fixed;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 
