@@ -6,14 +6,12 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 class NavBar extends Component{
     render(){
         return(
-            <BrowserRouter>
+            <BrowserRouter>            
                 <div className="App">
-                    <h1 type="text">BOOK-STORE</h1>
+                    <h1 style={{color:"white"}}type="text">BOOK-STORE</h1>
                     <input style={{marginTop:'22px', marginLeft:'25px', width:'400px', height:'35px'}} placeholder="Search..."/>
-                    <ul>
-                        <li><Link to="/" style={{marginLeft:'6px', color:'white'}}>Home</Link> </li>
-                        <li><Link to="/cart" style={{marginLeft:'6px', color:'white'}}>Cart</Link></li>
-                    </ul>
+                        <ul><Link to="/" style={{marginLeft:'400px', color:'white'}}>Home</Link></ul>
+                        <ul><Link to="/cart" style={{marginLeft:'16px', color:'white'}}>Cart</Link></ul>
                     <hr />
                     <Switch>
                     <Route exact path="/">
@@ -25,6 +23,7 @@ class NavBar extends Component{
                     </Switch>
                 </div>
             </BrowserRouter>
+            
         );
     }
 }
