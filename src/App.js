@@ -3,14 +3,12 @@ import './App.css';
 import NavBar from './component/NavBar';
 
 class App extends Component {
-  render(){
-    return(
-      <div className="App">
-        <BrowserRouter>
-        <NavBar/>       
-        </BrowserRouter> 
+  render() {
+    return (
+      <div>
+        <NavBar />
       </div>
-    )
+    );
   }
 }
 

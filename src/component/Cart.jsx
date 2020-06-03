@@ -5,9 +5,9 @@ class Cart extends React.Component{
     render(){
         return(
             <div>
-                <h4>Add Book to Cart</h4>
+                <h1>Add Book to Cart</h1>
             </div>
-        )
+        );
     }
 
 }
