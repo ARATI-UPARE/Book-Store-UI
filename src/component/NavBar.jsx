@@ -1,31 +1,28 @@
-import React, { Component } from 'react'
-import Home from './Home';
+import React from 'react';
+import BookStore from './BookStore';
 import Cart from './Cart';
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import WishList from './WishList'
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import BookIcon from '@material-ui/icons/Book';
 
-class NavBar extends Component{
-    render(){
-        return(
-            <BrowserRouter>            
-                <div className="App">
-                    <h1 style={{color:"white"}}type="text">BOOK-STORE</h1>
-                    <input style={{marginTop:'22px', marginLeft:'25px', width:'400px', height:'35px'}} placeholder="Search..."/>
-                        <ul><Link to="/" style={{marginLeft:'400px', color:'white'}}>Home</Link></ul>
-                        <ul><Link to="/cart" style={{marginLeft:'16px', color:'white'}}>Cart</Link></ul>
-                    <hr />
-                    <Switch>
-                    <Route exact path="/">
-                        <Home />
-                    </Route>
-                    <Route path="/cart">
-                        <Cart />
-                    </Route>
-                    </Switch>
-                </div>
-            </BrowserRouter>
-            
-        );
-    }
+export default function () {
+    return(    
+        <BrowserRouter>
+        <div className="nav">
+            <ul>
+            <Link to="/" className="l1">&#xf02d; BOOK-STORE</Link>
+            </ul>
+            <input className="input" placeholder="Search..."/>
+            <ul>
+            <Link to="/cart" className="l2"> Cart </Link>
+            <Link to="/wishlist" className="l3" > WishList </Link>
+            </ul>
+        </div> 
+        <Switch>   
+          <Route exact path="/" component={BookStore}></Route>
+          <Route  path="/cart" component={Cart} />   
+          <Route path="/wishlist" component={WishList} />
+        </Switch>  
+    </BrowserRouter>  
+    )
 }
-
-export default NavBar;

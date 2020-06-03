@@ -1,13 +1,42 @@
 .App {
-  display: flex;
-  background-color: brown;
-  width: 100000px;
-  height: 70px;
-  padding: 0 40px;
-  position: fixed;
-  flex-direction: row;
-  justify-content: space-evenly;
+  align-items: center;
 }
 
+.nav {
+  display: flex;
+  background-color: brown;
+  width: 3000px;
+  height: 60px;
+}
 
+.input {
+  display: flex;
+  width: 550px;
+  height: 28px;
+  margin-top: 20px;
+  margin-left: 15px;
+}
 
+.cart {
+  display: flex;
+  color: white;
+  margin-left:0px ;
+  margin-top: 20px;
+}
+
+.l1 {
+  margin-top: 50px;
+  text-Decoration: none;
+   color:white;
+   font-family: fontawesome;
+}
+.l2 {
+  text-Decoration: none;
+   margin-Left: 550px;
+   color: white;
+}
+.l3 {
+   text-Decoration: none;
+   margin-Left: 35px;
+   color: white;
+}
