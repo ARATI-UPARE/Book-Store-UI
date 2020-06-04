@@ -26,8 +26,6 @@ class Home extends React.Component {
             })
         console.log(this.state.books)
     }
-    //    var abc =  data.fetchAllBook()
-    //    console.log(abc)
 
 
     render() {
@@ -35,9 +33,9 @@ class Home extends React.Component {
         return (
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap:'wrap', marginLeft: '150px', marginRight: '90px' }}>
                 {books.map(book => (
-                    <div style={{margin: '40px'}} key={book.nameOfBook}>
+                    <div style={{margin: '40px', padding: '20px'}} key={book.nameOfBook}>
                         <img style={{width: '180px', height: '250px'}} src={book.picPath} alt="" />
-                        <h3>{book.nameOfBook}</h3>
+                        <h3 style={{width: '200px'}}>{book.nameOfBook}</h3>
                         <h5 style={{opacity: '0.5'}}>{book.author}</h5>
                         <h4>Rs. {book.price}</h4>
                         <button style={{backgroundColor: '#A52A2A', color: 'white', width: '100px', height: '30px'}}>ADD TO BAG</button>
