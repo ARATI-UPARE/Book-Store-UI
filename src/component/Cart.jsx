@@ -4,7 +4,7 @@ class Cart extends React.Component{
 
     render(){
         return(
-            <div>
+            <div style={{height: '827px'}}>
                 <h1>Add Book to Cart</h1>
             </div>
         );
