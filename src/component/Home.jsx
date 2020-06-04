@@ -42,6 +42,7 @@ class Home extends React.Component {
                         <button style={{ marginLeft: '3.5px', width: '100px', height: '30px' }}>WISHLIST</button>
                     </div>
                 ))};
+                <footer>Book Store</footer>
             </div>
         );
     }
