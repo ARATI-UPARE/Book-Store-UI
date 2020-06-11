@@ -2,12 +2,21 @@
   display: flex;
   background-color: brown;
   width: 95.68%;
-  height: 8%;
+  height: 70px;
   padding: 0 40px;
   position: sticky;
+  top: 0;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-
+.Input {
+  margin-top: 15px;
+  margin-left: 187px; 
+  width: 549px; 
+  height: 35px;
+  font-size: 21px; 
+  font-family: fontawesome;
+  border-radius: 5px;
+}
 
