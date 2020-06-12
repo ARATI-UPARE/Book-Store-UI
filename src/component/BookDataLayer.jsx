@@ -13,7 +13,7 @@ class BookDataLayer {
             "content-type": "Application/json"
         },
         body: JSON.stringify({"bookId": bookId, "bookQuantity": quantity, "userId": userId})})
-        .then(res => res.json())
+        .then(res => res.text())
         .then(res => console.log(res))
     }
 
@@ -30,7 +30,7 @@ class BookDataLayer {
             "content-type": "Application/json"
         },
         body: JSON.stringify({"bookId": bookId, "userId": userId})})
-        .then(res => res.json())
+        .then(res => res.text())
         .then(res => console.log(res))
     }
 

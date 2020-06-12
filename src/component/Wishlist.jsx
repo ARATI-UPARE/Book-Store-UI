@@ -11,8 +11,8 @@ class Wishlist extends Component {
         }
     }
 
-    componentDidMount() {
-        data.fetchAllWishlistBook(response => {
+    async componentDidMount() {
+        await data.fetchAllWishlistBook(response => {
             console.log(response)
             this.setState({
                 wishlistBooks: response
