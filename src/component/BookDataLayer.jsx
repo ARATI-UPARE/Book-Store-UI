@@ -1,13 +1,13 @@
 
 class BookDataLayer {
     fetchAllBook(callback) {
-       fetch('http://192.168.2.6:8080/verifyaccount/all')
+       fetch('http://localhost:8080/verifyaccount/all')
        .then(res => res.json())
        .then(values => callback(values))
     }
 
     addToCart(userId, bookId, quantity) {
-        fetch("http://192.168.2.6:8080/home/user/cart/add-update", {
+        fetch("http://localhost:8080/home/user/cart/add-update", {
         method: 'PUT',
         headers: {
             "content-type": "Application/json"
@@ -18,13 +18,13 @@ class BookDataLayer {
     }
 
     fetchAllCartBook(callback) {
-        fetch("http://192.168.2.6:8080/home/user/cart/getall/101")
+        fetch("http://localhost:8080/home/user/cart/getall/101")
         .then(res => res.json())
         .then(values => callback(values))
     }
 
     addToWishlist(userId, bookId) {
-        fetch("http://192.168.2.6:8080/home/user/wishlist/add", {
+        fetch("http://localhost:8080/home/user/wishlist/add", {
         method: 'PUT',
         headers: {
             "content-type": "Application/json"
@@ -35,7 +35,7 @@ class BookDataLayer {
     }
 
     fetchAllWishlistBook(callback) {
-        fetch("http://192.168.2.6:8080/home/user/wishlist/getall/101")
+        fetch("http://localhost:8080/home/user/wishlist/getall/101")
         .then(res => res.json())
         .then(values => callback(values))
     }
