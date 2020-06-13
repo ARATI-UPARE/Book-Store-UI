@@ -2,6 +2,8 @@ import React from 'react'
 import Home from './Home';
 import Cart from './Cart';
 import Wishlist from './Wishlist';
+import OrderPlaced from './OrderPlaced';
+import NotFound from './NotFound';
 import { Route, Switch } from "react-router-dom";
 
 export default function Routes() {
@@ -10,6 +12,8 @@ export default function Routes() {
             <Route exact path="/" component={Home}/>
             <Route path="/cart" component={Cart}/>
             <Route path="/wishlist" component={Wishlist}/>
+            <Route path="/orderplaced" component={OrderPlaced}/>
+            <Route component={NotFound}/>
         </Switch>
     );
 }

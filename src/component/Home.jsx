@@ -30,14 +30,22 @@ class Home extends React.Component {
         console.log("raj", e)
     }
 
+    handleChangeBookDesc = () => {
+        data.fetchAllBookDesc(response => {
+           this.setState({     
+                books: response.content
+            })
+        }) 
+    }
+
     render() {
         let { books } = this.state
         return (
             <div style={{ flexDirection: 'row', marginTop: '30px' }}>
                 <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
-                <select style={{ marginLeft: '948px', fontSize: '20px' }}>
+                <select onChange={this.handleChangeBookDesc} style={{ marginLeft: '948px', fontSize: '20px' }}>
                     <option>Sort by relevance</option>
-                    <option>Price : High to low</option>
+                    <option >Price : High to low</option>
                     <option>Price : Low to High</option>
                     <option>Newest Arrivals</option>
                 </select>
@@ -53,7 +61,7 @@ class Home extends React.Component {
                                 <text is="x3d" style={{ opacity: '0.5' }}>by {book.author}</text><br></br><br></br>
                                 <text is="x3d">Rs. {book.price}</text><br></br><br></br>
                             </div>
-                            <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold'}} onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
+                            <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold' }} onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
                             <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold' }} onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
                         </div>
                     ))}
