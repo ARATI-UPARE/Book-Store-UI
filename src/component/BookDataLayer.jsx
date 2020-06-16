@@ -51,6 +51,40 @@ class BookDataLayer {
         .then(res => res.json())
         .then(values => callback(values))
      }
+
+    updateCart(userId, bookId, quantity) {
+        fetch("http://localhost:8080/home/user/cart/add-update", {
+        method: 'PUT',
+        headers: {
+            "content-type": "Application/json"
+        },
+        body: JSON.stringify({"bookId": bookId, "bookQuantity": quantity, "userId": userId})})
+        .then(res => res.text())
+        .then(res => console.log(res))
+    }
+
+    removeFromCart(userId, bookId, quantity){
+        fetch("http://localhost:8080/home/user/cart/remove", {
+            method: 'PUT',
+            headers: {
+                "content-type": "Application/json"
+            },
+            body: JSON.stringify({"bookId": bookId, "bookQuantity": quantity, "userId": userId})})
+            .then(res => res.text())
+            .then(res => console.log(res))
+    }
+    
+    removeFromWishList(userId, bookId){
+        fetch("http://localhost:8080/home/user/wishlist/remove", {
+        method: 'PUT',
+        headers: {
+            "content-type": "Application/json"
+        },
+        body: JSON.stringify({"bookId": bookId, "userId": userId})})
+        .then(res => res.text())
+        .then(res => console.log(res))
+    }
+
     
 }
 

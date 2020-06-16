@@ -32,6 +32,7 @@ class Home extends React.Component {
 
     handleChangeBookDesc = () => {
         data.fetchAllBookDesc(response => {
+            console.log(response)
            this.setState({     
                 books: response.content
             })
@@ -61,8 +62,8 @@ class Home extends React.Component {
                                 <text is="x3d" style={{ opacity: '0.5' }}>by {book.author}</text><br></br><br></br>
                                 <text is="x3d">Rs. {book.price}</text><br></br><br></br>
                             </div>
-                            <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold' }} onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
-                            <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold' }} onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
+                            <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold', borderWidth: 'thin' }} onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
+                            <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold', borderWidth: 'thin' }} onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
                         </div>
                     ))}
                 </div></div>
