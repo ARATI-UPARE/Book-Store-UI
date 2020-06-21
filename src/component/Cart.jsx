@@ -1,6 +1,7 @@
 import React from 'react'
 import BookDataLayer from './BookDataLayer'
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 
 var data = new BookDataLayer();
 
@@ -74,10 +75,10 @@ class Cart extends React.Component {
         })
     }
 
-
     render() {
         return (
             <div>
+                <NavBar/>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin' }}><br />
                     <h3 style={{ marginLeft: '30px' }}> My cart ({this.state.cartBookList.length})</h3>
                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginRight: '10px' }}>
@@ -115,7 +116,7 @@ class Cart extends React.Component {
                             <input type="radio" name="type" style={{ marginLeft: '30px' }} /> Work
                             <input type="radio" name="type" style={{ marginLeft: '30px' }} /> Other
                         </div>
-                            <input style={{ marginLeft: '800px', marginBottom: '20px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} type="submit" value="CONTINUE" onClick={this.handleChangeEnableOrderSummary} />
+                            <input style={{ marginLeft: '800px', marginBottom: '20px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} type="submit" value="CONTINUE" onClick={this.handleChangeEnableOrderSummary}/>
                         </form> : null}
                 </div>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin' }}>
@@ -138,7 +139,12 @@ class Cart extends React.Component {
                             </Link>
                         </div> : null}
                 </div>
-            </div>
+            
+            <footer style={{ marginLeft: '0px', marginRight: '0px', backgroundColor: '#660000', color: 'white', height: '60px', bottom: '0', position: 'fixed', width: '100%' }}>
+            <br/>
+            <text style={{ display: 'flex', justifyContent: 'center' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
+          </footer>
+          </div>
         );
     }
 

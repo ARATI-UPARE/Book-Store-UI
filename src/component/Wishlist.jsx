@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookDataLayer from './BookDataLayer'
+import NavBar from './NavBar';
 
 var data = new BookDataLayer();
 
@@ -32,6 +33,8 @@ class Wishlist extends Component {
 
     render() {
         return (
+            <div>
+            <NavBar/>
             <div style={{ height: '110vh' }}>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin', width: '59%' }}><br/>
                     <h3 style={{ marginLeft: '30px' }}> My wishlist ({this.state.wishlistBooks.length})</h3>
@@ -50,6 +53,11 @@ class Wishlist extends Component {
                     </div>
                 </div>
             </div>
+            <footer style={{ marginLeft: '0px', marginRight: '0px', backgroundColor: '#660000', color: 'white', height: '60px', bottom: '0', position: 'fixed', width: '100%' }}>
+            <br/>
+            <text style={{ display: 'flex', justifyContent: 'center' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
+          </footer>
+          </div>
         );
     }
 
