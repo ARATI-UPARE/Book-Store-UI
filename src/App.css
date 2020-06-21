@@ -1,4 +1,57 @@
-.App {
+.App{
+  background-color: white;
+}
+.Page{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height:935px;
+  width:900px;
+  margin:auto;
+  background-color:wheat;
+  border: medium;
+  padding-left: 30px;
+}
+
+.box{
+  display: flex;
+  position: relative;
+  justify-content:start;
+  align-items: flex-start;
+  flex-direction: column;
+  height:400px;
+  width:450px;
+  margin:auto;
+  background-color:white;
+  border: medium;
+  padding-left: 30px;
+}
+.flex-container {
+  height: 500px;
+  width: 400px;
+  align-items: center;
+  background-color: white;
+  justify-content: center;
+  color:black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  opacity: 0.9;
+  position: relative;
+
+}
+
+.button {
+  background-color: wheat;
+  color:black;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  font-size: large;
+}
+.NavBar {
   display: flex;
   background-color: brown;
   width: 95.68%;

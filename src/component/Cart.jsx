@@ -73,8 +73,6 @@ class Cart extends React.Component {
             summaryToggle: true
         })
     }
-
-
     render() {
         return (
             <div>

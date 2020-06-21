@@ -61,7 +61,8 @@ class Home extends React.Component {
     render() {
         let { books } = this.state
         return (
-            <div style={{ flexDirection: 'row', marginTop: '30px' }}>
+            <div className="NavBar">
+            <div style={{  flexDirection: 'row', marginTop: '30px' }}>
                 <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
                 <select onChange={this.handleChangeBookSorting} style={{ marginLeft: '948px', fontSize: '20px' }}>
                     <option>Sort by relevance</option>
@@ -92,10 +93,11 @@ class Home extends React.Component {
                                     <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold', borderWidth: 'thin' }}
                                         onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
                                 </div>}
-
-                        </div>
-                    ))}
-                </div></div>
+                            </div>
+                         ))}
+                    </div>
+                </div>
+            </div>
         );
     }
 }
