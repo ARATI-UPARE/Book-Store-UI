@@ -1,22 +1,45 @@
 .App {
   display: flex;
   background-color: brown;
-  width: 95.68%;
+  width: 99.4%;
   height: 70px;
-  padding: 0 40px;
+  padding: 5px;
   position: sticky;
   top: 0;
   flex-direction: row;
-  justify-content: space-evenly;
 }
 
 .Input {
   margin-top: 15px;
-  margin-left: 187px; 
-  width: 549px; 
+  margin-left: 170px; 
+  width: 600px; 
   height: 35px;
   font-size: 21px; 
   font-family: fontawesome;
   border-radius: 5px;
 }
 
+.button {
+  color:white;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 20px;
+  width: 150px;
+  padding: 5px;
+  background-color: brown;
+}
+
+.login-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 550px;
+  margin-right: 420px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 3%;
+  color: black;
+  background-color: white(155, 56, 56);
+  border: 2px groove black;
+}

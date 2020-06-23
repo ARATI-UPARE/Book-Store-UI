@@ -24,7 +24,7 @@ class Cart extends React.Component {
     }
 
     async handleChangeBookRemove(e) {
-        await data.removeFromCart(101, e, 1)
+        await data.removeFromCart(e, 1)
         await data.fetchAllCartBook(response => {
             console.log("raj", response)
             this.setState({
@@ -37,7 +37,7 @@ class Cart extends React.Component {
     handleChangeBookDec(e) {
         let q = e.bookQuantity - 1;
         console.log("value of q ", q)
-        data.updateCart(101, e.id, q)
+        data.updateCart(e.id, q)
         window.location.reload(true)
         data.fetchAllCartBook(response => {
             console.log(response)
@@ -51,7 +51,7 @@ class Cart extends React.Component {
     handleChangeBookInc(e) {
         let q = e.bookQuantity + 1;
         console.log("value of q ", q)
-        data.updateCart(101, e.id, q)
+        data.updateCart(e.id, q)
         window.location.reload(true)
         data.fetchAllCartBook(response => {
             console.log(response)

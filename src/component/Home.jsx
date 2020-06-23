@@ -1,14 +1,16 @@
 import React from 'react'
 import BookDataLayer from './BookDataLayer';
+import Pagination from 'react-js-pagination';
 
 var data = new BookDataLayer();
 
 class Home extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             books: [],
-            toggle: false
+            toggle: false,
+            activePage: 6
         }
     }
 
@@ -22,7 +24,7 @@ class Home extends React.Component {
     }
 
     handleClickAddToCart = (e) => {
-        data.addToCart(101, e, 1)
+        data.addToCart(e, 1)
         console.log("raj", e)
         this.setState({
             toggle: true
@@ -58,6 +60,11 @@ class Home extends React.Component {
             })
     }
 
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({ activePage: pageNumber });
+    }
+
     render() {
         let { books } = this.state
         return (
@@ -69,7 +76,7 @@ class Home extends React.Component {
                     <option>Price : Low to High</option>
                     <option>Newest Arrivals</option>
                 </select>
-                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '90px' }}>
+                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '90px', marginBottom: '50px' }}>
                     {books.map((book, index) => (
                         <div style={{ margin: '40px', height: '380px', width: '270px', outlineStyle: 'groove', outlineColor: '#F8F8F8', outlineWidth: 'thin' }} key={book.id}>
                             <div style={{ height: '220px', width: '270px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
@@ -77,7 +84,7 @@ class Home extends React.Component {
                             </div>
                             <br></br>
                             <div style={{ marginLeft: '18px' }}>
-                                <text is="x3d" style={{ width: '200px' }}>{book.nameOfBook}</text><br></br>
+                                <text is="x3d" style={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>{book.nameOfBook}</text><br></br>
                                 <text is="x3d" style={{ opacity: '0.5' }}>by {book.author}</text><br></br><br></br>
                                 <text is="x3d">Rs. {book.price}</text><br></br><br></br>
                             </div>
@@ -95,7 +102,17 @@ class Home extends React.Component {
 
                         </div>
                     ))}
-                </div></div>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '60px' }}>
+                    <Pagination
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={10}
+                        totalItemsCount={49}
+                        pageRangeDisplayed={5}
+                        onChange={this.handlePageChange.bind(this)}
+                    />
+                </div>
+            </div>
         );
     }
 }
