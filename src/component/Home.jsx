@@ -1,5 +1,6 @@
-import React from 'react'
+import React from 'react';
 import BookDataLayer from './BookDataLayer';
+import NavBar from './NavBar';
 
 var data = new BookDataLayer();
 
@@ -61,6 +62,9 @@ class Home extends React.Component {
     render() {
         let { books } = this.state
         return (
+            <div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '85px', marginRight: '85px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: 'thin', height: '100%' }}>
+                <NavBar/>
             <div style={{ flexDirection: 'row', marginTop: '30px' }}>
                 <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
                 <select onChange={this.handleChangeBookSorting} style={{ marginLeft: '948px', fontSize: '20px' }}>
@@ -92,10 +96,15 @@ class Home extends React.Component {
                                     <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold', borderWidth: 'thin' }}
                                         onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
                                 </div>}
-
-                        </div>
-                    ))}
+                            </div>
+                        ))}
                 </div>
+            </div>
+            </div>
+            <footer style={{ marginLeft: '85px', marginRight: '100px', backgroundColor: '#660000', color: 'white', height: '60px', bottom: '0', position: 'fixed', width: '90.83%' }}>
+                <br/>
+                    <text style={{ display: 'flex', justifyContent: 'center' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
+                </footer> 
             </div>
         );
     }
