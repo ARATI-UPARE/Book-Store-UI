@@ -10,7 +10,18 @@ class Cart extends React.Component {
         this.state = {
             cartBookList: [],
             toggle: false,
-            summaryToggle: false
+            summaryToggle: false,
+            name: '',
+            pincode: '',
+            locality: '',
+            address: '',
+            city: '',
+            landmark: '',
+            addressType: '',
+            home: false,
+            work: false,
+            other: false,
+            orderId: ''
         }
     }
 
@@ -36,11 +47,9 @@ class Cart extends React.Component {
 
     handleChangeBookDec(e) {
         let q = e.bookQuantity - 1;
-        console.log("value of q ", q)
         data.updateCart(e.id, q)
         window.location.reload(true)
         data.fetchAllCartBook(response => {
-            console.log(response)
             this.setState({
                 cartBookList: response
             })
@@ -50,11 +59,9 @@ class Cart extends React.Component {
 
     handleChangeBookInc(e) {
         let q = e.bookQuantity + 1;
-        console.log("value of q ", q)
         data.updateCart(e.id, q)
         window.location.reload(true)
         data.fetchAllCartBook(response => {
-            console.log(response)
             this.setState({
                 cartBookList: response
             })
@@ -68,9 +75,102 @@ class Cart extends React.Component {
         })
     }
 
-    handleChangeEnableOrderSummary = () => {
+    handleChangeEnableOrderSummary = async () => {
+
+        if (this.state.home) {
+            await this.setState({
+                addressType: 'home'
+            })
+        }
+        if (this.state.work) {
+            await this.setState({
+                addressType: 'work'
+            })
+        }
+        if (this.state.other) {
+            await this.setState({
+                addressType: 'other'
+            })
+        }
+
+        console.log("type", this.state.addressType);
+
+        await data.addCustomerDetails(this.state.name, this.state.pincode, this.state.locality, this.state.address, this.state.city, this.state.landmark, this.state.addressType)
+        await this.setState({
+            summaryToggle: true,
+            toggle: false
+        })
+
+    }
+
+    handleSetName = (e) => {
         this.setState({
-            summaryToggle: true
+            name: e.target.value
+        })
+    }
+
+    handleSetPincode = (e) => {
+        this.setState({
+            pincode: e.target.value
+        })
+    }
+
+    handleSetLocality = async (e) => {
+        await this.setState({
+            locality: e.target.value
+        })
+    }
+
+    handleSetAddress = (e) => {
+        this.setState({
+            address: e.target.value
+        })
+    }
+
+    handleSetCity = (e) => {
+        this.setState({
+            city: e.target.value
+        })
+    }
+
+    handleSetLandmark = async (e) => {
+        await this.setState({
+            landmark: e.target.value,
+        })
+    }
+
+    handleSelectHome = async () => {
+        await this.setState({
+            work: false,
+            home: true,
+            other: false
+        })
+    }
+
+    handleSelectWork = async () => {
+        await this.setState({
+            work: true,
+            home: false,
+            other: false
+        })
+        console.log("work", this.state.work);
+    }
+
+    handleSelectOther = async () => {
+        await this.setState({
+            work: false,
+            home: false,
+            other: true
+        })
+        console.log("other", this.state.other);
+    }
+
+    handleChangePlaceOrder() {
+        data.placeOrder(response => {
+            console.log("order id : ", response)
+            // this.setState({
+            //     orderId: response
+            // })
         })
     }
 
@@ -102,18 +202,17 @@ class Cart extends React.Component {
                     <h3 style={{ marginLeft: '10px', padding: '20px' }}>Customer Details</h3>
                     {this.state.toggle ?
                         <form>
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Name" required></input>
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} size='10' type='number' placeholder="Phone Number" required></input> <br />
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} maxLength='6' type='number' pattern="^[1-9][0-9]{5}$" placeholder="Pincode" required></input>
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Locality" required></input><br />
-                            <textarea style={{ marginLeft: '30px', height: '50px', marginBottom: '10px', width: '488.7px' }} placeholder="Address" required></textarea><br />
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="City/Town" required></input>
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Landmark" required></input><br />
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Name" required onChange={(e) => this.handleSetName(e)}></input> <br />
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} maxLength='6' type='number' pattern="^[1-9][0-9]{5}$" placeholder="Pincode" required onChange={(e) => this.handleSetPincode(e)}></input>
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Locality" required onChange={(e) => this.handleSetLocality(e)}></input><br />
+                            <textarea style={{ marginLeft: '30px', height: '50px', marginBottom: '10px', width: '488.7px' }} placeholder="Address" required onChange={(e) => this.handleSetAddress(e)}></textarea> <br />
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="City/Town" required onChange={(e) => this.handleSetCity(e)}></input>
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Landmark" required onChange={(e) => this.handleSetLandmark(e)}></input> <br />
                             <div style={{ marginLeft: '30px' }}>
                                 <h4>Type</h4>
-                                <input type="radio" name="type" style={{ marginBottom: '40px' }} /> Home
-                            <input type="radio" name="type" style={{ marginLeft: '30px' }} /> Work
-                            <input type="radio" name="type" style={{ marginLeft: '30px' }} /> Other
+                                <input type="radio" name="type" style={{ marginBottom: '40px' }} onChange={this.handleSelectHome} /> Home
+                            <input type="radio" name="type" style={{ marginLeft: '30px' }} onChange={this.handleSelectWork} /> Work
+                            <input type="radio" name="type" style={{ marginLeft: '30px' }} onChange={this.handleSelectOther} /> Other
                         </div>
                             <input style={{ marginLeft: '800px', marginBottom: '20px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} type="submit" value="CONTINUE" onClick={this.handleChangeEnableOrderSummary} />
                         </form> : null}
@@ -134,7 +233,8 @@ class Cart extends React.Component {
                                 </div>
                             ))}
                             <Link to="/orderplaced" >
-                                <button style={{ marginBottom: '9px', marginLeft: '800px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }}>CHECKOUT</button>
+                                <button style={{ marginBottom: '9px', marginLeft: '800px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} onClick={this.handleChangePlaceOrder
+                                }>CHECKOUT</button>
                             </Link>
                         </div> : null}
                 </div>

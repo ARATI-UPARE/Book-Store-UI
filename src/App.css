@@ -43,3 +43,38 @@
   background-color: white(155, 56, 56);
   border: 2px groove black;
 }
+
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 200px;
+  margin-left: 18px;
+}
+
+/* .ellipsis:hover{
+  text-overflow: clip;
+  white-space: normal;
+  word-break: break-all;
+} */
+
+.info:hover .bookInfo{
+  width: 500px;
+  display: block;
+  position: absolute;
+  min-height: 90px;
+  width: 300px;
+  margin-left: 270px;
+  margin-top: -388px;
+  background-color: white;
+  /* z-index: 1; */
+  outline-style: groove;
+  outline-width: 0.1px;
+  outline-color: grey;
+}
+
+.bookInfo {
+  position: absolute;
+  display: none;
+}

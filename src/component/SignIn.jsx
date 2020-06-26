@@ -36,7 +36,7 @@ export class SignIn extends Component {
                 <h1>Welcome to BookStore</h1>
                 <div style={{ padding: "10px", display: "flex", flexDirection: "column" }}>
                     <input style={{ padding: "10px", margin: "5px" }} placeholder="Username" onChange={(e) => this.handleChangeUsername(e)}></input>
-                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Password" onChange={(e) => this.handleChangePassword(e)}></input>
+                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Password" type="password" onChange={(e) => this.handleChangePassword(e)}></input>
                 </div>
                 <div>
                     <Link to="/" >
@@ -45,7 +45,7 @@ export class SignIn extends Component {
                 </div>
                 <div style={{ padding: "10px", margin:"5px", display: "flex", flexDirection: "column", fontSize:"20px", justifyContent:"center", alignItems:"center" }}>
                      <a style={{color:"black", textDecoration:"none",  padding: "5px"}} href="/signup">Create account instead!</a>
-                     <a style={{color:"black", textDecoration:"none"}} href="/resetpassword">Forgot password?</a> 
+                     <a style={{color:"black", textDecoration:"none"}} href="/forgotpassword">Forgot password?</a> 
                 </div>
             </div>
         )

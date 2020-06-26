@@ -8,8 +8,8 @@ import Search from './Search';
 import { Route, Switch } from "react-router-dom";
 import SignIn from './SignIn';
 import SignUp from './SignUp';
-import ResetPassword from './ResetPassword';
 import PasswordSet from './PasswordSet';
+import ForgotPassword from './ForgotPassword';
 
 export default function Routes() {
     return (
@@ -21,7 +21,7 @@ export default function Routes() {
             <Route path="/search" component={Search}/>
             <Route path="/signin" component={SignIn}/>
             <Route path="/signup" component={SignUp}/>
-            <Route path="/resetpassword" component={ResetPassword}/>
+            <Route path="/forgotpassword" component={ForgotPassword}/>
             <Route path="/passwordset/*" component={PasswordSet}/>
             <Route component={NotFound}/>
         </Switch>
