@@ -69,9 +69,24 @@ class Cart extends React.Component {
         window.location.reload(true)
     }
 
-    handleChangeEnableCustomerDetails = () => {
-        this.setState({
-            toggle: true
+    handleChangeEnableCustomerDetails = async() => {
+        await data.isCustomerDetailsExisted(response => {
+            console.log("result : ", response)
+            if (response == 'true') {
+             this.setState({
+                toggle: false,
+                summaryToggle: true
+            })
+            console.log("toggle : ", this.state.toggle);
+            console.log("summarytoggle : ", this.state.summaryToggle);
+        }else {
+            this.setState({
+                toggle: true,
+                summaryToggle: false
+            })
+            console.log("toggle123 : ", this.state.toggle);
+            console.log("summarytoggle : ", this.state.summaryToggle);
+        }
         })
     }
 
@@ -165,8 +180,8 @@ class Cart extends React.Component {
         console.log("other", this.state.other);
     }
 
-    handleChangePlaceOrder() {
-        data.placeOrder(response => {
+    async handleChangePlaceOrder() {
+        await data.placeOrder(response => {
             console.log("order id : ", response)
             // this.setState({
             //     orderId: response
@@ -233,8 +248,7 @@ class Cart extends React.Component {
                                 </div>
                             ))}
                             <Link to="/orderplaced" >
-                                <button style={{ marginBottom: '9px', marginLeft: '800px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} onClick={this.handleChangePlaceOrder
-                                }>CHECKOUT</button>
+                                <button style={{ marginBottom: '9px', marginLeft: '800px', backgroundColor: '#4863A0', color: 'white', width: '140px', height: '37px', fontWeight: 'bold' }} onClick={this.handleChangePlaceOrder}>CHECKOUT</button>
                             </Link>
                         </div> : null}
                 </div>

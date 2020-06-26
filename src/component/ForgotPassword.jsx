@@ -12,9 +12,7 @@ class ForgotPassword extends Component {
         }
     }
 
-    handleChangeEmailId = async(e) => {
-       
-        
+    handleChangeEmailId = async(e) => {   
        await  this.setState({
             email: e.target.value
         })
@@ -22,7 +20,7 @@ class ForgotPassword extends Component {
     }
 
     handleSubmit = () => {
-        data.forgotPassword(this.state.email)
+        data.forgotPassword(this.state.email) 
     }
 
     render() {

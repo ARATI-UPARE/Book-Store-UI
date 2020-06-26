@@ -167,6 +167,18 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
+    isCustomerDetailsExisted(callback) {
+        fetch("http://localhost:8080/home/customer/isexisted", {
+            method: 'GET',
+            headers: {
+                "token": localStorage.getItem("token")
+            }
+        })
+        .then(res => res.text())
+        .then(res => callback(res)
+        )
+    }
+
     placeOrder(callback) {
         fetch('http://localhost:8080/home/user/cart/orderplaced/orderid', {
             method: 'GET',
