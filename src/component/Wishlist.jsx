@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BookDataLayer from './BookDataLayer'
+import { Redirect } from 'react-router-dom';
 
 var data = new BookDataLayer();
 
@@ -32,6 +33,7 @@ class Wishlist extends Component {
 
     render() {
         return (
+            localStorage.getItem("token") != null ?
             <div style={{ height: '110vh' }}>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin', width: '59%' }}><br/>
                     <h3 style={{ marginLeft: '30px' }}> My wishlist ({this.state.wishlistBooks.length})</h3>
@@ -50,6 +52,7 @@ class Wishlist extends Component {
                     </div>
                 </div>
             </div>
+            :  <Redirect to='/signin' />
         );
     }
 

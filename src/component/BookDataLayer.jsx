@@ -211,6 +211,19 @@ class BookDataLayer {
                 ))
     }
 
+    resetPassword(password) {
+        fetch("http://localhost:8080/api/auth/resetpassword", {
+            method: 'PUT',
+            headers: {
+                "token": localStorage.getItem("token")
+            },
+            body: (password)
+        })
+            .then(res => res.text()
+                .then(res => console.log("message", res)
+                ))
+    }
+
 }
 
 export default BookDataLayer;

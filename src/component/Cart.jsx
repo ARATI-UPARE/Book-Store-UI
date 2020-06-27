@@ -1,6 +1,6 @@
 import React from 'react'
 import BookDataLayer from './BookDataLayer'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 var data = new BookDataLayer();
 
@@ -192,6 +192,7 @@ class Cart extends React.Component {
 
     render() {
         return (
+            localStorage.getItem("token") != null ?
             <div>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin' }}><br />
                     <h3 style={{ marginLeft: '30px' }}> My cart ({this.state.cartBookList.length})</h3>
@@ -253,6 +254,7 @@ class Cart extends React.Component {
                         </div> : null}
                 </div>
             </div>
+            :  <Redirect to='/signin' />
         );
     }
 

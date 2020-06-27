@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Box } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Order from '../Assets/Order.jpg';
 import BookDataLayer from './BookDataLayer';
 
@@ -25,6 +25,7 @@ export default class OrderPlaced extends React.Component {
 
     render() {
         return (
+            localStorage.getItem("token") != null ?
             <div style={{ marginBottom: '44.3px', marginLeft: '420px', marginTop: '50px' }}>
                 <img src={Order} alt="" style={{ marginLeft: '230px' }}></img>
                 <p style={{ justifyContent: 'center', textAlign: 'center', fontSize: '25px' }}>
@@ -58,6 +59,7 @@ export default class OrderPlaced extends React.Component {
                     <Button style={{ backgroundColor: '#0073cf', color: 'white', marginLeft: '335px', marginTop: '50px' }}>CONTINUE SHOPPING</Button>
                 </Link>
             </div>
+            :  <Redirect to='/signin' />
         );
     }
 }
