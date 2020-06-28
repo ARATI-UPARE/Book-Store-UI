@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BookDataLayer from './BookDataLayer'
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 var data = new BookDataLayer();
 
@@ -8,17 +9,25 @@ class Wishlist extends Component {
     constructor() {
         super()
         this.state = {
-            wishlistBooks: []
+            wishlistBooks: [],
+            cartBookCount: 0
         }
     }
 
-    componentDidMount() {
-        data.fetchAllWishlistBook(response => {
+    async componentDidMount() {
+        await data.fetchAllWishlistBook(response => {
             console.log(response)
             this.setState({
                 wishlistBooks: response
             })
         })
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
+        })
+        
     }
 
     async handleChangeBookRemove(e) {
@@ -29,6 +38,7 @@ class Wishlist extends Component {
                 wishlistBooks: response
             })
         })
+        window.location.reload(true)
     }
 
     render() {
@@ -58,4 +68,8 @@ class Wishlist extends Component {
 
 }
 
-export default Wishlist;
+const mapStateToProps = (state) => ({
+    wishListCount: state.wishListCount
+});
+
+export default connect(mapStateToProps) (Wishlist);

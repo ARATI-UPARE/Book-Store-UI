@@ -1,6 +1,7 @@
 import React from 'react'
 import BookDataLayer from './BookDataLayer'
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 var data = new BookDataLayer();
 
@@ -25,12 +26,19 @@ class Cart extends React.Component {
         }
     }
 
-    componentDidMount() {
-        data.fetchAllCartBook(response => {
+    async componentDidMount() {
+        await data.fetchAllCartBook(response => {
             console.log(response)
             this.setState({
-                cartBookList: response
+                cartBookList: response,
+                bookCount: response.length
             })
+        })
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
         })
     }
 
@@ -42,6 +50,7 @@ class Cart extends React.Component {
                 cartBookList: response
             })
         })
+        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
         window.location.reload(true)
     }
 
@@ -54,6 +63,7 @@ class Cart extends React.Component {
                 cartBookList: response
             })
         })
+        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
         window.location.reload(true)
     }
 
@@ -66,6 +76,7 @@ class Cart extends React.Component {
                 cartBookList: response
             })
         })
+        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
         window.location.reload(true)
     }
 
@@ -260,4 +271,8 @@ class Cart extends React.Component {
 
 }
 
-export default Cart;
+const mapStateToProps = (state) => ({
+    cartCount: state.cartCount
+});
+
+export default connect(mapStateToProps)(Cart);

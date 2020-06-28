@@ -1,7 +1,7 @@
 import React from 'react'
 import BookDataLayer from './BookDataLayer';
-import Pagination from 'react-js-pagination';
-// import ReactTooltip from 'react-tooltip';
+import Pagination from '../component/Pagination';
+import { connect } from 'react-redux';
 
 var data = new BookDataLayer();
 
@@ -12,29 +12,49 @@ class Home extends React.Component {
             books: [],
             toggle: false,
             activePage: 6,
+            pageOfItems: [],
+            cartCount: 0,
+            wishCount: 0
         }
+
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
-    componentDidMount() {
-        data.fetchAllBook(response => {
+    async componentDidMount() {
+        await data.fetchAllBook(response => {
             console.log(response)
             this.setState({
                 books: response
             })
         })
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
+        })
+        
     }
 
-    handleClickAddToCart = (e) => {
+    handleClickAddToCart = async(e) => {
         data.addToCart(e, 1)
         console.log("raj", e)
         this.setState({
             toggle: true
         })
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
+        })
+        window.location.reload(true)
     }
 
-    handleClickAddToWishlist = (e) => {
+    handleClickAddToWishlist = async(e) => {
         data.addToWishlist(101, e)
         console.log("raj", e)
+        await data.fetchAllWishlistBook(response => {
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
+        })
+        window.location.reload(true)
     }
 
     handleChangeBookSorting = (e) => {
@@ -61,13 +81,13 @@ class Home extends React.Component {
             })
     }
 
-    handlePageChange(pageNumber) {
-        console.log(`active page is ${pageNumber}`);
-        this.setState({ activePage: pageNumber });
+    onChangePage(pageOfItems) {
+        // update state with new page of items
+        this.setState({ pageOfItems: pageOfItems });
     }
 
     render() {
-        let { books } = this.state
+        let { books, pageOfItems } = this.state
         return (
             <div style={{ flexDirection: 'row', marginTop: '30px' }}>
                 <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
@@ -78,7 +98,7 @@ class Home extends React.Component {
                     <option>Newest Arrivals</option>
                 </select>
                 <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '90px', marginBottom: '50px' }}>
-                    {books.map((book, index) => (
+                    {this.state.pageOfItems.map((book, index) => (
                         <div className="info" style={{ margin: '40px', height: '380px', width: '270px', outlineStyle: 'groove', outlineColor: '#F8F8F8', outlineWidth: 'thin' }} key={book.id} >
 
                             <div style={{ height: '220px', width: '270px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
@@ -105,20 +125,19 @@ class Home extends React.Component {
                                 <p style={{padding: '13px'}}>{book.description}</p>
                             </div>
                         </div>
-
                     ))}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '60px' }}>
-                    <Pagination
-                        activePage={this.state.activePage}
-                        itemsCountPerPage={10}
-                        totalItemsCount={49}
-                        pageRangeDisplayed={5}
-                        onChange={this.handlePageChange.bind(this)}
-                    />
+                <div style={{ marginBottom: '30px'}}>
+                <Pagination items={this.state.books} onChangePage={this.onChangePage} />
                 </div>
             </div>
         );
     }
 }
-export default Home;
+
+const mapStateToProps = (state) => ({
+    cartCount: state.cartCount,
+    wishListCount: state.wishListCount
+});
+
+export default connect(mapStateToProps)(Home);
