@@ -11,10 +11,7 @@ class Home extends React.Component {
         this.state = {
             books: [],
             toggle: false,
-            activePage: 6,
             pageOfItems: [],
-            cartCount: 0,
-            wishCount: 0
         }
 
         this.onChangePage = this.onChangePage.bind(this);
@@ -32,12 +29,11 @@ class Home extends React.Component {
         })
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
-        })
-        
+        })    
     }
 
     handleClickAddToCart = async(e) => {
-        data.addToCart(e, 1)
+        await data.addToCart(e, 1)
         console.log("raj", e)
         this.setState({
             toggle: true
@@ -45,16 +41,15 @@ class Home extends React.Component {
         await data.fetchAllCartBook(response => {
             this.props.dispatch({ type: "methodCalled", payload: response.length })
         })
-        window.location.reload(true)
     }
 
     handleClickAddToWishlist = async(e) => {
-        data.addToWishlist(101, e)
+        await data.addToWishlist(e)
         console.log("raj", e)
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
         })
-        window.location.reload(true)
+        window.location.reload(true);
     }
 
     handleChangeBookSorting = (e) => {
@@ -81,15 +76,26 @@ class Home extends React.Component {
             })
     }
 
+    handleSearchtext = async () => {
+        await data.fetchAllSearchBook(this.props.searchText, response => {
+            this.setState({
+                books: response
+            })
+        });
+    }
+
     onChangePage(pageOfItems) {
         // update state with new page of items
         this.setState({ pageOfItems: pageOfItems });
     }
 
     render() {
+        if (this.props.searchText !== undefined) {
+            this.handleSearchtext()
+        }
         let { books, pageOfItems } = this.state
         return (
-            <div style={{ flexDirection: 'row', marginTop: '30px' }}>
+            <div style={{ flexDirection: 'row', marginTop: '30px', marginBottom: '120px' }}>
                 <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({books.length} items)</text></text>
                 <select onChange={this.handleChangeBookSorting} style={{ marginLeft: '948px', fontSize: '20px' }}>
                     <option>Sort by relevance</option>
@@ -98,7 +104,7 @@ class Home extends React.Component {
                     <option>Newest Arrivals</option>
                 </select>
                 <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '90px', marginBottom: '50px' }}>
-                    {this.state.pageOfItems.map((book, index) => (
+                    {pageOfItems.map((book, index) => (
                         <div className="info" style={{ margin: '40px', height: '380px', width: '270px', outlineStyle: 'groove', outlineColor: '#F8F8F8', outlineWidth: 'thin' }} key={book.id} >
 
                             <div style={{ height: '220px', width: '270px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
@@ -110,24 +116,19 @@ class Home extends React.Component {
                                 <text is="x3d" style={{ color: 'grey' }}>by {book.author}</text><br></br><br></br>
                                 <text is="x3d">Rs. {book.price}</text><br></br><br></br>
                             </div>
-                            {this.state.toggle ? <button style={{
-                                backgroundColor: 'blue', color: 'white', width: '240px', height: '37px', marginLeft: '18px',
-                                marginBottom: '20px', fontWeight: 'bold', borderWidth: 'thin'
-                            }} >ADDED TO BAG</button>
-                                :
                                 <div>
                                     <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold', borderWidth: 'thin', borderRadius: '5px' }}
                                         onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
                                     <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold', borderWidth: 'thin', borderRadius: '5px' }}
                                         onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
-                                </div>}
+                                </div>
                             <div className="bookInfo">
                                 <p style={{padding: '13px'}}>{book.description}</p>
                             </div>
                         </div>
                     ))}
                 </div>
-                <div style={{ marginBottom: '30px'}}>
+                <div >
                 <Pagination items={this.state.books} onChangePage={this.onChangePage} />
                 </div>
             </div>
@@ -137,7 +138,8 @@ class Home extends React.Component {
 
 const mapStateToProps = (state) => ({
     cartCount: state.cartCount,
-    wishListCount: state.wishListCount
+    wishListCount: state.wishListCount,
+    searchText: state.searchText
 });
 
 export default connect(mapStateToProps)(Home);
