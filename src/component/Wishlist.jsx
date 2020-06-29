@@ -10,7 +10,7 @@ class Wishlist extends Component {
         super()
         this.state = {
             wishlistBooks: [],
-            cartBookCount: 0
+            // cartBookCount: 0
         }
     }
 
@@ -31,7 +31,7 @@ class Wishlist extends Component {
     }
 
     async handleChangeBookRemove(e) {
-        data.removeFromWishList(101, e)
+        data.removeFromWishList(e)
         await data.fetchAllWishlistBook(response => {
             console.log(response)
             this.setState({

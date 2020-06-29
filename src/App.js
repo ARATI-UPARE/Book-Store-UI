@@ -7,7 +7,8 @@ import BookDataLayer from './component/BookDataLayer';
 
 const initialState = {
   cartCount: 0,
-  wishListCount: 0
+  wishListCount: 0,
+  searchText: ''
 };
 
 function reducer(state = initialState, action) {
@@ -22,6 +23,13 @@ function reducer(state = initialState, action) {
       return {
         cartCount: state.cartCount,
         wishListCount: action.payload
+      }
+    case "searchUpdate":
+      console.log("searchUpdateReducer", action.payload)
+      return {
+        cartCount: state.cartCount,
+        wishListCount: state.wishListCount,
+        searchText: action.payload
       }
     default:
       return {
@@ -58,15 +66,15 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '85px', marginRight: '85px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: 'thin', height: '100%' }}>
-          <NavBar cartBookCount={this.state.cartBookCount} wishBookCount={this.state.wishBookCount}/>
+        <div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', marginLeft: '85px', marginRight: '85px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: 'thin', height: '100%' }}>
+            <NavBar cartBookCount={this.state.cartBookCount} wishBookCount={this.state.wishBookCount} />
+          </div>
+          <footer style={{ marginLeft: '85px', marginRight: '85px', backgroundColor: '#660000', color: 'white', height: '60px', bottom: '0', position: 'fixed', width: '90.83%' }}>
+            <br />
+            <text style={{ display: 'flex', justifyContent: 'center' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
+          </footer>
         </div>
-        <footer style={{ marginLeft: '85px', marginRight: '85px', backgroundColor: '#660000', color: 'white', height: '60px', bottom: '0', position: 'fixed', width: '90.83%' }}>
-          <br/>
-          <text style={{ display: 'flex', justifyContent: 'center' }}>Copyright &#169; 2020, Bookstore Private Limited. All Rights Reserved</text>
-        </footer>
-      </div>
       </Provider>
     );
   }

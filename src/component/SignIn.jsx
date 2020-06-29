@@ -25,9 +25,10 @@ export class SignIn extends Component {
         })
     }
 
-    handleChangeLogin = () => {
-        data.signInData(this.state.username, this.state.password)
-        console.log(localStorage.getItem("token"))
+    handleChangeLogin = async() => {
+       await data.signInData(this.state.username, this.state.password);
+        console.log(localStorage.getItem("token"));
+        // window.location.reload(true);
     }
 
     render() {

@@ -26,15 +26,15 @@ class Cart extends React.Component {
         }
     }
 
-    async componentDidMount() {
-        await data.fetchAllCartBook(response => {
+      async componentDidMount() {
+       await  data.fetchAllCartBook(response => {
             console.log(response)
             this.setState({
-                cartBookList: response,
-                bookCount: response.length
+                cartBookList: response
+                // bookCount: response.length
             })
         })
-        await data.fetchAllCartBook(response => {
+       await  data.fetchAllCartBook(response => {
             this.props.dispatch({ type: "methodCalled", payload: response.length })
         })
         await data.fetchAllWishlistBook(response => {
@@ -49,41 +49,41 @@ class Cart extends React.Component {
             this.setState({
                 cartBookList: response
             })
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
         })
-        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
         window.location.reload(true)
     }
 
-    handleChangeBookDec(e) {
+    async handleChangeBookDec(e) {
         let q = e.bookQuantity - 1;
-        data.updateCart(e.id, q)
+        await  data.updateCart(e.id, q)
         window.location.reload(true)
-        data.fetchAllCartBook(response => {
+        await data.fetchAllCartBook(response => {
             this.setState({
                 cartBookList: response
             })
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
         })
-        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
-        window.location.reload(true)
+        // window.location.reload(true)
     }
 
-    handleChangeBookInc(e) {
+    async handleChangeBookInc(e) {
         let q = e.bookQuantity + 1;
-        data.updateCart(e.id, q)
+        await data.updateCart(e.id, q)
         window.location.reload(true)
-        data.fetchAllCartBook(response => {
+        await data.fetchAllCartBook(response => {
             this.setState({
                 cartBookList: response
             })
+            this.props.dispatch({ type: "methodCalled", payload: response.length })
         })
-        this.props.dispatch({ type: "methodCalled", payload: this.state.cartBookList.length })
-        window.location.reload(true)
+        // window.location.reload(true)
     }
 
     handleChangeEnableCustomerDetails = async() => {
         await data.isCustomerDetailsExisted(response => {
             console.log("result : ", response)
-            if (response == 'true') {
+            if (response === 'true') {
              this.setState({
                 toggle: false,
                 summaryToggle: true

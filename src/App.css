@@ -11,7 +11,7 @@
 
 .Input {
   margin-top: 15px;
-  margin-left: 170px; 
+  margin-left: 152px; 
   width: 600px; 
   height: 35px;
   font-size: 21px; 
@@ -82,19 +82,20 @@
 .pagination {
   flex-direction: row;
   display: flex;
+  justify-content: center;
 }
 
  .page-button-view {
   color:brown;
   background-color: #F8F8F8;
   margin-left: 24px;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-right: 23px;
 } 
  
 .page-button-view1 {
   color:brown;
   background-color: #F8F8F8;
-  margin-top: 50px;
+  margin-top: 20px;
   margin-right: 3px;
 } 

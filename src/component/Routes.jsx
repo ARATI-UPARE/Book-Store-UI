@@ -4,7 +4,6 @@ import Cart from './Cart';
 import Wishlist from './Wishlist';
 import OrderPlaced from './OrderPlaced';
 import NotFound from './NotFound';
-import Search from './Search';
 import { Route, Switch } from "react-router-dom";
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -18,7 +17,6 @@ export default function Routes() {
             <Route path="/cart" component={Cart}/>
             <Route path="/wishlist" component={Wishlist}/>
             <Route path="/orderplaced" component={OrderPlaced}/>
-            <Route path="/search" component={Search}/>
             <Route path="/signin" component={SignIn}/>
             <Route path="/signup" component={SignUp}/>
             <Route path="/forgotpassword" component={ForgotPassword}/>

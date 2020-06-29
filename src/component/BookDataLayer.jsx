@@ -31,14 +31,14 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    addToWishlist(userId, bookId) {
+    addToWishlist(bookId) {
         fetch("http://localhost:8080/home/user/wishlist/add", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
                 "token": localStorage.getItem("token")
             },
-            body: JSON.stringify({ "bookId": bookId, "userId": userId })
+            body: JSON.stringify({ "bookId": bookId })
         })
             .then(res => res.text())
             .then(res => console.log(res))
@@ -93,14 +93,14 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    removeFromWishList(userId, bookId) {
+    removeFromWishList(bookId) {
         fetch("http://localhost:8080/home/user/wishlist/remove", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
                 "token": localStorage.getItem("token")
             },
-            body: JSON.stringify({ "bookId": bookId, "userId": userId })
+            body: JSON.stringify({ "bookId": bookId })
         })
             .then(res => res.text())
             .then(res => console.log(res))
