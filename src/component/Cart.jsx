@@ -31,11 +31,10 @@ class Cart extends React.Component {
             console.log(response)
             this.setState({
                 cartBookList: response
-                // bookCount: response.length
             })
         })
        await  data.fetchAllCartBook(response => {
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
@@ -49,35 +48,30 @@ class Cart extends React.Component {
             this.setState({
                 cartBookList: response
             })
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
-        window.location.reload(true)
     }
 
     async handleChangeBookDec(e) {
         let q = e.bookQuantity - 1;
         await  data.updateCart(e.id, q)
-        window.location.reload(true)
         await data.fetchAllCartBook(response => {
             this.setState({
                 cartBookList: response
             })
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
-        // window.location.reload(true)
     }
 
     async handleChangeBookInc(e) {
         let q = e.bookQuantity + 1;
         await data.updateCart(e.id, q)
-        window.location.reload(true)
         await data.fetchAllCartBook(response => {
             this.setState({
                 cartBookList: response
             })
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
-        // window.location.reload(true)
     }
 
     handleChangeEnableCustomerDetails = async() => {
@@ -203,7 +197,7 @@ class Cart extends React.Component {
 
     render() {
         return (
-            localStorage.getItem("token") != null ?
+            localStorage.getItem("token") !== null && localStorage.getItem("token") !== "undefined" ?
             <div>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin' }}><br />
                     <h3 style={{ marginLeft: '30px' }}> My cart ({this.state.cartBookList.length})</h3>

@@ -19,8 +19,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    fetchAllCartBook(callback) {
-        fetch("http://localhost:8080/home/user/cart/getall", {
+    async fetchAllCartBook(callback) {
+        await fetch("http://localhost:8080/home/user/cart/getall", {
             method: 'GET',
             headers: {
                 "content-type": "Application/json",
@@ -44,8 +44,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    fetchAllWishlistBook(callback) {
-        fetch("http://localhost:8080/home/user/wishlist/getall", {
+    async fetchAllWishlistBook(callback) {
+       await fetch("http://localhost:8080/home/user/wishlist/getall", {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -55,20 +55,20 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    fetchAllBookAsc(callback) {
-        fetch('http://localhost:8080/verifyaccount/sort-asc/price')
+    async fetchAllBookAsc(callback) {
+        await fetch('http://localhost:8080/verifyaccount/sort-asc/price')
             .then(res => res.json())
             .then(values => callback(values))
     }
 
-    fetchAllBookDesc(callback) {
-        fetch('http://localhost:8080/verifyaccount/sort-desc/price')
+    async fetchAllBookDesc(callback) {
+        await fetch('http://localhost:8080/verifyaccount/sort-desc/price')
             .then(res => res.json())
             .then(values => callback(values))
     }
 
-    updateCart(bookId, quantity) {
-        fetch("http://localhost:8080/home/user/cart/add-update", {
+    async updateCart(bookId, quantity) {
+        await fetch("http://localhost:8080/home/user/cart/add-update", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -80,8 +80,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    removeFromCart(bookId, quantity) {
-        fetch("http://localhost:8080/home/user/cart/remove", {
+    async removeFromCart(bookId, quantity) {
+        await fetch("http://localhost:8080/home/user/cart/remove", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -93,8 +93,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    removeFromWishList(bookId) {
-        fetch("http://localhost:8080/home/user/wishlist/remove", {
+    async removeFromWishList(bookId) {
+        await fetch("http://localhost:8080/home/user/wishlist/remove", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -131,8 +131,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    signInData(username, password) {
-        fetch("http://localhost:8080/api/auth/signin", {
+    async signInData(username, password, callback) {
+       await fetch("http://localhost:8080/api/auth/signin", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json"
@@ -143,7 +143,7 @@ class BookDataLayer {
             })
         })
             .then(res => res.json())
-            .then(res => localStorage.setItem("token", res.accessToken))
+            .then(res =>  callback(res))
     }
 
     addCustomerDetails(name, pincode, locality, address, city, landmark, addressType) {

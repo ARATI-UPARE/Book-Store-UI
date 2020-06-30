@@ -25,7 +25,7 @@ class Home extends React.Component {
             })
         })
         await data.fetchAllCartBook(response => {
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
@@ -39,17 +39,20 @@ class Home extends React.Component {
             toggle: true
         })
         await data.fetchAllCartBook(response => {
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
     }
 
     handleClickAddToWishlist = async(e) => {
         await data.addToWishlist(e)
         console.log("raj", e)
+        this.setState({
+            toggle: true
+        })
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
         })
-        window.location.reload(true);
+        // window.location.reload(true);
     }
 
     handleChangeBookSorting = (e) => {
@@ -82,6 +85,7 @@ class Home extends React.Component {
                 books: response
             })
         });
+        await this.props.dispatch({ type: "searchUpdate", payload: ''})
     }
 
     onChangePage(pageOfItems) {
@@ -90,7 +94,7 @@ class Home extends React.Component {
     }
 
     render() {
-        if (this.props.searchText !== undefined) {
+        if (this.props.searchText !== undefined && this.props.searchText !== '') {
             this.handleSearchtext()
         }
         let { books, pageOfItems } = this.state

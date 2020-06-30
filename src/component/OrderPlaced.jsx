@@ -25,7 +25,7 @@ export default class OrderPlaced extends React.Component {
 
     render() {
         return (
-            localStorage.getItem("token") != null ?
+            localStorage.getItem("token") != null && localStorage.getItem("token") !== "undefined" ?
             <div style={{ marginBottom: '44.3px', marginLeft: '420px', marginTop: '50px' }}>
                 <img src={Order} alt="" style={{ marginLeft: '230px' }}></img>
                 <p style={{ justifyContent: 'center', textAlign: 'center', fontSize: '25px' }}>

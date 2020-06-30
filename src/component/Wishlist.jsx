@@ -22,7 +22,7 @@ class Wishlist extends Component {
             })
         })
         await data.fetchAllCartBook(response => {
-            this.props.dispatch({ type: "methodCalled", payload: response.length })
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
         await data.fetchAllWishlistBook(response => {
             this.props.dispatch({ type: "wishListUpdate", payload: response.length })
@@ -31,19 +31,18 @@ class Wishlist extends Component {
     }
 
     async handleChangeBookRemove(e) {
-        data.removeFromWishList(e)
+        await data.removeFromWishList(e)
         await data.fetchAllWishlistBook(response => {
             console.log(response)
             this.setState({
                 wishlistBooks: response
             })
         })
-        window.location.reload(true)
     }
 
     render() {
         return (
-            localStorage.getItem("token") != null ?
+            localStorage.getItem("token") != null && localStorage.getItem("token") !== "undefined" ?
             <div style={{ height: '110vh' }}>
                 <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin', width: '59%' }}><br/>
                     <h3 style={{ marginLeft: '30px' }}> My wishlist ({this.state.wishlistBooks.length})</h3>

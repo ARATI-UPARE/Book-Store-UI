@@ -25,10 +25,13 @@ export class SignIn extends Component {
         })
     }
 
-    handleChangeLogin = async() => {
-       await data.signInData(this.state.username, this.state.password);
+    handleChangeLogin = async () => {
+        await data.signInData(this.state.username, this.state.password, response => {
+            console.log("message : ", response)
+            localStorage.setItem("token", response.accessToken)
+        })
         console.log(localStorage.getItem("token"));
-        // window.location.reload(true);
+        window.location.reload(true);
     }
 
     render() {
@@ -44,9 +47,9 @@ export class SignIn extends Component {
                         <button className="button" onClick={this.handleChangeLogin}>Login</button>
                     </Link>
                 </div>
-                <div style={{ padding: "10px", margin:"5px", display: "flex", flexDirection: "column", fontSize:"20px", justifyContent:"center", alignItems:"center" }}>
-                     <a style={{color:"black", textDecoration:"none",  padding: "5px"}} href="/signup">Create account instead!</a>
-                     <a style={{color:"black", textDecoration:"none"}} href="/forgotpassword">Forgot password?</a> 
+                <div style={{ padding: "10px", margin: "5px", display: "flex", flexDirection: "column", fontSize: "20px", justifyContent: "center", alignItems: "center" }}>
+                    <a style={{ color: "black", textDecoration: "none", padding: "5px" }} href="/signup">Create account instead!</a>
+                    <a style={{ color: "black", textDecoration: "none" }} href="/forgotpassword">Forgot password?</a>
                 </div>
             </div>
         )
