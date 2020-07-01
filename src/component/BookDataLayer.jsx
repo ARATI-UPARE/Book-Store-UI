@@ -1,7 +1,7 @@
 
 class BookDataLayer {
-    fetchAllBook(callback) {
-        fetch('http://localhost:8080/verifyaccount/all')
+    async fetchAllBook(pageNumber, callback) {
+        await fetch(`http://localhost:8080/verifyaccount/all?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
@@ -31,8 +31,8 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    addToWishlist(bookId) {
-        fetch("http://localhost:8080/home/user/wishlist/add", {
+    async addToWishlist(bookId) {
+        await fetch("http://localhost:8080/home/user/wishlist/add", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -45,7 +45,7 @@ class BookDataLayer {
     }
 
     async fetchAllWishlistBook(callback) {
-       await fetch("http://localhost:8080/home/user/wishlist/getall", {
+        await fetch("http://localhost:8080/home/user/wishlist/getall", {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -55,14 +55,14 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    async fetchAllBookAsc(callback) {
-        await fetch('http://localhost:8080/verifyaccount/sort-asc/price')
+    async fetchAllBookAsc(pageNumber, callback) {
+        await fetch(`http://localhost:8080/verifyaccount/sort-asc/price?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
-    async fetchAllBookDesc(callback) {
-        await fetch('http://localhost:8080/verifyaccount/sort-desc/price')
+    async fetchAllBookDesc(pageNumber, callback) {
+        await fetch(`http://localhost:8080/verifyaccount/sort-desc/price?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
@@ -106,15 +106,15 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    fetchAllSearchBook(searchText, callback) {
+    async fetchAllSearchBook(searchText, pageNumber, callback) {
         console.log("text", searchText)
-        fetch(`http://localhost:8080/verifyaccount/searchbooks/${searchText}`)
+        await fetch(`http://localhost:8080/verifyaccount/searchbooks/${searchText}?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
-    signUpData(username, password, email, phoneNo, role) {
-        fetch("http://localhost:8080/api/auth/signup", {
+    async signUpData(username, password, email, phoneNo, role) {
+        await fetch("http://localhost:8080/api/auth/signup", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json"
@@ -131,8 +131,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    async signInData(username, password, callback) {
-       await fetch("http://localhost:8080/api/auth/signin", {
+    async signInData(username, password) {
+        await fetch("http://localhost:8080/api/auth/signin", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json"
@@ -143,11 +143,11 @@ class BookDataLayer {
             })
         })
             .then(res => res.json())
-            .then(res =>  callback(res))
+            .then(response => localStorage.setItem("token", response.accessToken))
     }
 
-    addCustomerDetails(name, pincode, locality, address, city, landmark, addressType) {
-        fetch("http://localhost:8080/home/customer/adddetails", {
+    async addCustomerDetails(name, pincode, locality, address, city, landmark, addressType) {
+        await fetch("http://localhost:8080/home/customer/adddetails", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json",
@@ -174,9 +174,9 @@ class BookDataLayer {
                 "token": localStorage.getItem("token")
             }
         })
-        .then(res => res.text())
-        .then(res => callback(res)
-        )
+            .then(res => res.text())
+            .then(res => callback(res)
+            )
     }
 
     placeOrder(callback) {

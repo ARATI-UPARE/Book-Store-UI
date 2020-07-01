@@ -26,12 +26,23 @@ export class SignIn extends Component {
     }
 
     handleChangeLogin = async () => {
-        await data.signInData(this.state.username, this.state.password, response => {
-            console.log("message : ", response)
-            localStorage.setItem("token", response.accessToken)
-        })
-        console.log(localStorage.getItem("token"));
-        window.location.reload(true);
+        await data.signInData(this.state.username, this.state.password)
+        console.log("token:", sessionStorage.getItem("token"));
+
+        if (sessionStorage.getItem("isFrom") === "cart") {
+            await sessionStorage.removeItem("isFrom")
+            this.props.history.push('/cart');
+            window.location.reload(true);
+        }
+        else if (sessionStorage.getItem("isFrom") === "wishList") {
+            await sessionStorage.removeItem("isFrom")
+            this.props.history.push('/wishlist');
+            window.location.reload(true);
+        }
+        else {
+            this.props.history.push('/');
+            window.location.reload(true);
+        }
     }
 
     render() {

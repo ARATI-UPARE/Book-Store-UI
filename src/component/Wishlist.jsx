@@ -37,14 +37,15 @@ class Wishlist extends Component {
             this.setState({
                 wishlistBooks: response
             })
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
         })
     }
 
     render() {
         return (
             localStorage.getItem("token") != null && localStorage.getItem("token") !== "undefined" ?
-            <div style={{ height: '110vh' }}>
-                <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin', width: '59%' }}><br/>
+            <div>
+                <div style={{ marginLeft: '350px', marginRight: '350px', marginTop: '60px', marginBottom: '40px', outlineStyle: 'groove', outlineWidth: 'thin', width: '970px' }}><br/>
                     <h3 style={{ marginLeft: '30px' }}> My wishlist ({this.state.wishlistBooks.length})</h3>
                     <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginRight: '10px' }}>,
                     {this.state.wishlistBooks.map(book => (
@@ -61,7 +62,7 @@ class Wishlist extends Component {
                     </div>
                 </div>
             </div>
-            :  <Redirect to='/signin' />
+            :  <Redirect to='/signin' onClick={sessionStorage.setItem("isFrom", "wishlist")} />
         );
     }
 

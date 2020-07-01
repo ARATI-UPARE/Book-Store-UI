@@ -188,9 +188,6 @@ class Cart extends React.Component {
     async handleChangePlaceOrder() {
         await data.placeOrder(response => {
             console.log("order id : ", response)
-            // this.setState({
-            //     orderId: response
-            // })
         })
     }
 
@@ -224,7 +221,7 @@ class Cart extends React.Component {
                     {this.state.toggle ?
                         <form>
                             <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Name" required onChange={(e) => this.handleSetName(e)}></input> <br />
-                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} maxLength='6' type='number' pattern="^[1-9][0-9]{5}$" placeholder="Pincode" required onChange={(e) => this.handleSetPincode(e)}></input>
+                            <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} maxLength='6' minLength='6' placeholder="Pincode" required onChange={(e) => this.handleSetPincode(e)}></input>
                             <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="Locality" required onChange={(e) => this.handleSetLocality(e)}></input><br />
                             <textarea style={{ marginLeft: '30px', height: '50px', marginBottom: '10px', width: '488.7px' }} placeholder="Address" required onChange={(e) => this.handleSetAddress(e)}></textarea> <br />
                             <input style={{ marginLeft: '30px', height: '30px', marginBottom: '10px', width: '225px' }} placeholder="City/Town" required onChange={(e) => this.handleSetCity(e)}></input>
@@ -259,7 +256,7 @@ class Cart extends React.Component {
                         </div> : null}
                 </div>
             </div>
-            :  <Redirect to='/signin' />
+            :  <Redirect to='/signin' onClick={sessionStorage.setItem("isFrom", "cart")} />
         );
     }
 
