@@ -1,0 +1,537 @@
+// global variables
+$main-color: rgb(0,0,0);
+$primary-color: rgb(129, 29, 29);
+$secondary-color: rgb(255, 255, 255);
+$tertiary-color: rgb(180, 178, 178);
+$quaternary-color: rgb(114, 134, 189);
+
+// @media screen and (max-width: 1080px) {
+
+
+.ToolBar{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 85px;
+  margin-right: 85px;
+  outline-style: groove;
+  outline-color: $secondary-color;
+  outline-width: thin;
+  height: 100%;
+}
+
+.footer{
+  margin-left:85px;
+  margin-right:85px;
+  background-color:$primary-color;
+  color:$secondary-color;
+  height: 60px;
+  bottom:0;
+  position:fixed;
+  width:90.83%;
+}
+
+.copyRight{
+  display: flex;
+  justify-content:center;
+}
+
+.App {
+  display: flex;
+  background-color: $primary-color;
+  width: 99.4%;
+  height: 70px;
+  padding: 5px;
+  position: sticky;
+  top: 0;
+  flex-direction: row;
+}
+
+.Input {
+  margin-top: 15px;
+  margin-left: 30px; 
+  width: 600px; 
+  height: 35px;
+  font-size: 21px; 
+  font-family:FontAwesome;
+  border-radius: 5px;
+
+}
+
+.cartBar{
+  margin-left:350px;
+  margin-right:350px;
+  margin-top:60px;
+  margin-bottom:40px;
+  outline-style:groove;
+  outline-width:thin;
+}
+.cart{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  margin-right:10px;
+}
+
+.cartKey{
+  margin-left:30px;
+  margin-top:20px;
+  height:160px;
+  margin-bottom:30px;
+  width:95%;
+  outline-color:$tertiary-color;
+  outline-width:thin;
+  border-bottom:groove;
+  display:flex;
+  flex-direction:row;
+}
+
+.bookImg{
+  width:110px;
+  height:140px;
+}
+
+.cartPadding{
+  margin-left:50px;
+  padding-right:100px;
+}
+
+.cartBotton{
+  width:25px;
+  margin-left:4px;
+  border-radius:25px;
+}
+
+.cartInput{
+  width:22px;
+  text-align:center;
+  font-weight:bold;
+  margin-left:4px; 
+}
+
+.removeBotton{
+  margin-left:450px;
+  background-color:$quaternary-color;
+  color:$secondary-color;
+  width:100px;
+  height:37px;
+  font-weight:bold;
+}
+
+.placeOrderBotton{
+  margin-bottom:9px;
+  margin-left:800px;
+  background-color:$quaternary-color;
+  color: $secondary-color;
+  width:140px;
+  height:37px;
+  font-weight:bold;
+}
+
+.userDetails{
+  margin-left:350px;
+  margin-right:350px;
+  margin-bottom:40px;
+  outline-style:groove;
+  outline-width:thin;
+}
+
+.userInput{
+  margin-left:30px;
+  height:30px;
+  margin-bottom: 10px;
+  width:225px;
+}
+
+.addressInput{
+  margin-left:30px;
+  height:50px;
+  margin-bottom:10px;
+  width:488.7px;
+}
+
+.continueBotton{
+  margin-left: 800px;
+  margin-bottom:20px;
+  background-color:$quaternary-color;
+  color:$secondary-color;
+  width:140px;
+  height:37px;
+  font-weight:bold;
+}
+
+.cartBooks{
+  margin-left:30px;
+  margin-top:20px;
+  height:160px;
+  margin-bottom: 30px;
+  width:95%;
+  outline-color:$tertiary-color;
+  outline-width:thin;
+  display:flex;
+  flex-direction:row;
+}
+
+.qtyTag{
+  width:70px;
+  text-align:center;
+  font-weight: bold;
+}
+
+.button {
+  color:$secondary-color;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 20px;
+  width: 150px;
+  padding: 5px;
+  background-color: $primary-color;
+}
+
+.login-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 550px;
+  margin-right: 420px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 3%;
+  color: $main-color;
+  background-color: white(155, 56, 56);
+  border: 2px groove $main-color;
+}
+
+.ellipsis{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 200px;
+  margin-left: 18px;
+  margin-bottom: 12px;
+}
+
+.info:hover .bookInfo{
+  width: 500px;
+  display: block;
+  position: absolute;
+  min-height: 90px;
+  width: 300px;
+  margin-left: 270px;
+  margin-top: -388px;
+  background-color: $secondary-color;
+  /* z-index: 1; */
+  outline-style: groove;
+  outline-width: 0.1px;
+  outline-color: grey;
+}
+
+.bookInfo {
+  position: absolute;
+  display: none;
+}
+
+.pagination {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+ .page-button-view {
+  color:$primary-color;
+  background-color: $tertiary-color;
+  margin-left: 24px;
+  margin-top: 20px;
+  margin-right: 23px;
+} 
+ 
+.page-button-view1 {
+  color:$primary-color;
+  background-color: $tertiary-color;
+  margin-top: 20px;
+  margin-right: 3px;
+} 
+
+.signIn{
+  padding: 10px;
+  display:flex;
+  flex-direction:column;
+}
+
+.mailInput{
+  padding:10px;
+  margin:5px;
+  width:200px;
+}
+
+.forgotPassword{
+  padding:10px;
+  margin:5px;
+  display:flex;
+  flex-direction:column;
+  font-size:20px;
+  justify-content:center;
+  align-items:center;
+}
+.a1{
+  color:$main-color;
+  text-decoration:none;
+  padding:5px;
+}
+.a2{
+  color:$main-color;
+  text-decoration:none;
+}
+.homeBar{
+  flex-direction:row;
+  margin-top:30px;
+  margin-bottom:120px;
+  font-size: 21px;
+}
+
+.select{
+  margin-left:950px;
+  font-size:21px;
+}
+
+.allBooks{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  margin-left:180px;
+  margin-right:90px;
+  margin-bottom:50px;
+}
+
+.info{
+  margin:40px;
+  height:400px;
+  width:270px;
+  outline-style:groove;
+  outline-color: $tertiary-color;
+  outline-width:thin;
+}
+
+.home2{
+  height:220px;
+  width:270px;
+  outline-style:groove;
+  outline-color:$secondary-color;
+  outline-width:0.1px;
+  background-color:$secondary-color;
+}
+
+.homeImg{
+  width:145px;
+  height:180px;
+  margin-left:60px;
+  margin-top:20px;
+  margin-bottom:25px;
+}
+
+.homeButton{
+  background-color:#A52A2A;
+  color:$secondary-color;
+  width:110px;
+  height:37px;
+  margin-left:18px;
+  margin-bottom:20px;
+  font-weight:bold;
+  border-width:thin;
+  border-radius:5px;
+}
+
+.homeButton2{
+  width:110px;
+  height:37px;
+  margin-left:15px;
+  font-weight:bold;
+  border-width:thin;
+  border-radius:5px;
+}
+.bookstore{
+  margin-left:260px;
+  margin-top:17px;
+  color:$secondary-color;
+  font-size:30px;
+  text-decoration:none;
+  font-family:FontAwesome;
+}
+.url{
+  list-style-type:none;
+  display:flex;
+  margin-top:20px;
+  flex-direction:row;
+}
+.cartUrl{
+  margin-left:170px;
+  color:$secondary-color;
+  text-decoration:none;
+  font-size:22px;
+  font-family:FontAwesome;
+}
+.wishlistUrl{
+  margin-left:30px;
+  color:$secondary-color;
+  text-decoration: none;
+  font-size:22px;
+  font-family:FontAwesome;
+}
+.loginUrl{
+  margin-left: 70px;
+  color:$secondary-color;
+  text-decoration: none;
+  font-size:22px;
+  font-family:FontAwesome;
+}
+.homeUrl{
+  margin-left:70px;
+  color:$secondary-color;
+  text-decoration:none;
+  font-size:22px;
+  font-family:FontAwesome;
+}
+
+.wishList{
+  margin-left:350px;
+  margin-right:350px;
+  margin-top:60px;
+  margin-bottom:40px;
+  outline-style:groove;
+  outline-width:thin;
+  width:970px;
+}
+
+.wishList2{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  margin-right:10px;
+}
+
+.wishList3{
+  margin-left:30px;
+  margin-top:20px;
+  height:160px;
+  margin-bottom:30px;
+  outline-color:$tertiary-color;
+  outline-width:thin;
+  border-bottom:groove;
+  display:flex;
+  flex-direction:row;
+}
+
+.wishListImg{
+    width:110px;
+    height:140px;
+}
+
+.wishListButton{
+    margin-left:650px;
+    background-color:$quaternary-color;
+    color:$secondary-color;
+    width:100px;
+    height:37px;
+    font-weight:bold;
+}
+
+.password{
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+}
+
+.passInput{
+    padding:10px;
+    margin:5px;
+    width:200px;
+}
+
+.low-signin{
+  padding:10px;
+  margin:5px;
+  display:flex;
+  flex-direction:column;
+  font-size:20px;
+  justify-content:center;
+  align-items:center;
+}
+
+.placeOrder{
+  margin-bottom:44.3px;
+  margin-left:420px;
+  margin-top:50px;
+}
+
+.order{
+  justify-content:center;
+  text-align:center;
+  font-size:25px;
+}
+
+.box{
+    outline:groove;
+    width:870px;
+    height:50px;
+    outline-width: 0.5px;
+    margin-top:60px;
+}
+
+.adminDetails{
+    display:flex;
+    flex-direction:row;
+    font-size:14px;
+}
+
+.box2{
+    outline:groove;
+    width:280px;
+    height:85px;
+    outline-width:0.5px;
+}
+
+.box3{
+    outline:groove;
+    width:280px;
+    height:85px;
+    outline-width:0.5px;
+}
+
+.box4{
+    outline:groove;
+    width:310px;
+    height:85px;
+    outline-width:0.5px;
+}
+
+.continue-shopping{
+    background-color:$quaternary-color;
+    color:$secondary-color;
+    margin-left:335px;
+    margin-top:50px;
+}
+
+.signUp{
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+}
+
+.input-box{
+    padding:12px;
+    margin:6px;
+}
+.low-signup{
+    padding:10px;
+    margin:5px;
+    display:flex;
+    flex-direction:row;
+    font-size:20px;
+}
+
+.signin-link{
+    color:$main-color;
+    padding:5px;
+    text-decoration:none;
+}

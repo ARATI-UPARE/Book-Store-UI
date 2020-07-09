@@ -49,7 +49,7 @@ export class SignIn extends Component {
         return (
             <div className="login-box">
                 <h1>Welcome to BookStore</h1>
-                <div style={{ padding: "10px", display: "flex", flexDirection: "column" }}>
+                <div className="signIn">
                     <input style={{ padding: "10px", margin: "5px" }} placeholder="Username" onChange={(e) => this.handleChangeUsername(e)}></input>
                     <input style={{ padding: "10px", margin: "5px" }} placeholder="Password" type="password" onChange={(e) => this.handleChangePassword(e)}></input>
                 </div>
@@ -58,9 +58,9 @@ export class SignIn extends Component {
                         <button className="button" onClick={this.handleChangeLogin}>Login</button>
                     </Link>
                 </div>
-                <div style={{ padding: "10px", margin: "5px", display: "flex", flexDirection: "column", fontSize: "20px", justifyContent: "center", alignItems: "center" }}>
-                    <a style={{ color: "black", textDecoration: "none", padding: "5px" }} href="/signup">Create account instead!</a>
-                    <a style={{ color: "black", textDecoration: "none" }} href="/forgotpassword">Forgot password?</a>
+                <div className="low-signin">
+                    <a className="a1" href="/signup">Create account instead!</a>
+                    <a className="a2" href="/forgotpassword">Forgot password?</a>
                 </div>
             </div>
         )

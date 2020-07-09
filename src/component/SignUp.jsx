@@ -84,11 +84,11 @@ export class SignUp extends Component {
                         Create an account
                     </h3>
                 </div>
-                <div style={{ padding: "10px", display: "flex", flexDirection: "column" }}>
-                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Email" onChange={(e) => this.handleSetEmail(e)}></input>
-                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Username" onChange={(e) => this.handleSetUsername(e)}></input>
-                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Password" onChange={(e) => this.handleSetPassword(e)}></input>
-                    <input style={{ padding: "10px", margin: "5px" }} placeholder="Mobile" onChange={(e) => this.handleSetPhoneNumber(e)}></input>
+                <div className="signUp">
+                    <input className="input-box" placeholder="Email" onChange={(e) => this.handleSetEmail(e)}></input>
+                    <input className="input-box" placeholder="Username" onChange={(e) => this.handleSetUsername(e)}></input>
+                    <input className="input-box" placeholder="Password" onChange={(e) => this.handleSetPassword(e)}></input>
+                    <input className="input-box" placeholder="Mobile" onChange={(e) => this.handleSetPhoneNumber(e)}></input>
                     <span>
                         <input type="checkbox" id="type" value="Admin" onChange={this.handleSelectAdmin}/>
                         <label for="type"> Admin</label>
@@ -101,8 +101,8 @@ export class SignUp extends Component {
                         <button className="button" onClick={this.handleSubmitSignUpData}>Signup</button>
                     </Link>
                 </div>
-                <div style={{ padding: "10px", margin: "5px", display: "flex", flexDirection: "row", fontSize: "20px" }}>
-                    <a style={{ color: "black", padding: "5px", textDecoration: "none" }} href="/signin">Already have an account? signin!</a>
+                <div className="low-signup">
+                    <a className="signin-link" href="/signin">Already have an account? signin!</a>
                 </div>
             </div>
         )

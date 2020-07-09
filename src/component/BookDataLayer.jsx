@@ -1,13 +1,13 @@
 
 class BookDataLayer {
     async fetchAllBook(pageNumber, callback) {
-        await fetch(`http://localhost:8080/verifyaccount/all?page=${pageNumber}&size=8`)
+        await fetch(`http://localhost:9090/verifyaccount/all?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
     addToCart(bookId, quantity) {
-        fetch("http://localhost:8080/home/user/cart/add-update", {
+        fetch("http://localhost:9090/home/user/cart/add-update", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -20,7 +20,7 @@ class BookDataLayer {
     }
 
     async fetchAllCartBook(callback) {
-        await fetch("http://localhost:8080/home/user/cart/getall", {
+        await fetch("http://localhost:9090/home/user/cart/getall", {
             method: 'GET',
             headers: {
                 "content-type": "Application/json",
@@ -32,7 +32,7 @@ class BookDataLayer {
     }
 
     async addToWishlist(bookId) {
-        await fetch("http://localhost:8080/home/user/wishlist/add", {
+        await fetch("http://localhost:9090/home/user/wishlist/add", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -45,7 +45,7 @@ class BookDataLayer {
     }
 
     async fetchAllWishlistBook(callback) {
-        await fetch("http://localhost:8080/home/user/wishlist/getall", {
+        await fetch("http://localhost:9090/home/user/wishlist/getall", {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -56,19 +56,19 @@ class BookDataLayer {
     }
 
     async fetchAllBookAsc(pageNumber, callback) {
-        await fetch(`http://localhost:8080/verifyaccount/sort-asc/price?page=${pageNumber}&size=8`)
+        await fetch(`http://localhost:9090/verifyaccount/sort-asc/price?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
     async fetchAllBookDesc(pageNumber, callback) {
-        await fetch(`http://localhost:8080/verifyaccount/sort-desc/price?page=${pageNumber}&size=8`)
+        await fetch(`http://localhost:9090/verifyaccount/sort-desc/price?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
     async updateCart(bookId, quantity) {
-        await fetch("http://localhost:8080/home/user/cart/add-update", {
+        await fetch("http://localhost:9090/home/user/cart/add-update", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -81,7 +81,7 @@ class BookDataLayer {
     }
 
     async removeFromCart(bookId, quantity) {
-        await fetch("http://localhost:8080/home/user/cart/remove", {
+        await fetch("http://localhost:9090/home/user/cart/remove", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -94,7 +94,7 @@ class BookDataLayer {
     }
 
     async removeFromWishList(bookId) {
-        await fetch("http://localhost:8080/home/user/wishlist/remove", {
+        await fetch("http://localhost:9090/home/user/wishlist/remove", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -108,13 +108,13 @@ class BookDataLayer {
 
     async fetchAllSearchBook(searchText, pageNumber, callback) {
         console.log("text", searchText)
-        await fetch(`http://localhost:8080/verifyaccount/searchbooks/${searchText}?page=${pageNumber}&size=8`)
+        await fetch(`http://localhost:9090/verifyaccount/searchbooks/${searchText}?page=${pageNumber}&size=8`)
             .then(res => res.json())
             .then(values => callback(values))
     }
 
     async signUpData(username, password, email, phoneNo, role) {
-        await fetch("http://localhost:8080/api/auth/signup", {
+        await fetch("http://localhost:9090/api/auth/signup", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json"
@@ -132,7 +132,7 @@ class BookDataLayer {
     }
 
     async signInData(username, password) {
-        await fetch("http://localhost:8080/api/auth/signin", {
+        await fetch("http://localhost:9090/api/auth/signin", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json"
@@ -143,11 +143,10 @@ class BookDataLayer {
             })
         })
             .then(res => res.json())
-            .then(response => localStorage.setItem("token", response.accessToken))
+            .then(res => localStorage.setItem("token", res.accessToken))
     }
-
     async addCustomerDetails(name, pincode, locality, address, city, landmark, addressType) {
-        await fetch("http://localhost:8080/home/customer/adddetails", {
+        await fetch("http://localhost:9090/home/customer/adddetails", {
             method: 'POST',
             headers: {
                 "content-type": "Application/json",
@@ -168,7 +167,7 @@ class BookDataLayer {
     }
 
     isCustomerDetailsExisted(callback) {
-        fetch("http://localhost:8080/home/customer/isexisted", {
+        fetch("http://localhost:9090/home/customer/isexisted", {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -180,7 +179,7 @@ class BookDataLayer {
     }
 
     placeOrder(callback) {
-        fetch('http://localhost:8080/home/user/cart/orderplaced/orderid', {
+        fetch('http://localhost:9090/home/user/cart/orderplaced/orderid', {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -191,7 +190,7 @@ class BookDataLayer {
     }
 
     getOrderId(callback) {
-        fetch('http://localhost:8080/home/user/cart/getorderid', {
+        fetch('http://localhost:9090/home/user/cart/getorderid', {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -202,17 +201,17 @@ class BookDataLayer {
     }
 
     forgotPassword(email) {
-        fetch("http://localhost:8080/api/auth/forgotpassword", {
+        fetch("http://localhost:9090/api/auth/forgotpassword", {
             method: 'POST',
             body: (email)
         })
             .then(res => res.text()
                 .then(res => console.log("message", res)
-                ))
+        ))
     }
 
     resetPassword(password) {
-        fetch("http://localhost:8080/api/auth/resetpassword", {
+        fetch("http://localhost:9090/api/auth/resetpassword", {
             method: 'PUT',
             headers: {
                 "token": localStorage.getItem("token")
@@ -221,7 +220,7 @@ class BookDataLayer {
         })
             .then(res => res.text()
                 .then(res => console.log("message", res)
-                ))
+        ))
     }
 
 }

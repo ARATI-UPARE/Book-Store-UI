@@ -27,7 +27,7 @@ class Home extends React.Component {
             })
         })
         console.log("data", this.state.whichData);
-        
+
         await data.fetchAllCartBook(response => {
             this.props.dispatch({ type: "cartUpdate", payload: response.length })
         })
@@ -90,7 +90,7 @@ class Home extends React.Component {
             })
         }
         console.log("pagenumber : ", this.state.pageNumber);
-        
+
         if (this.state.whichData === "Price : High to Low") {
             await data.fetchAllBookDesc(this.state.pageNumber, response => {
                 console.log(response)
@@ -111,7 +111,7 @@ class Home extends React.Component {
                 })
             })
         }
-        else if(this.state.whichData === "allBooksData"){
+        else if (this.state.whichData === "allBooksData") {
             await data.fetchAllBook(this.state.pageNumber, response => {
                 console.log(response)
                 this.setState({
@@ -121,26 +121,26 @@ class Home extends React.Component {
                 })
             })
         }
-        else if(this.state.whichData === "searchData") {
+        else if (this.state.whichData === "searchData") {
             await data.fetchAllSearchBook(this.state.searchTextHome, this.state.pageNumber, response => {
-                 this.props.dispatch({ type: "searchUpdate", payload: '' })
+                this.props.dispatch({ type: "searchUpdate", payload: '' })
                 this.setState({
                     books: response.content,
                     totalPages: response.totalPages,
                     totalElements: response.totalElements
                 })
             })
-            
+
         }
     }
-    
-    handleSearchtext = async() => {
+
+    handleSearchtext = async () => {
         await this.setState({
             whichData: "searchData",
             pageNumber: 0
         })
-     await this.handleChangePage(this.state.pageNumber)
-     
+        await this.handleChangePage(this.state.pageNumber)
+
     }
 
     render() {
@@ -152,35 +152,34 @@ class Home extends React.Component {
                 this.handleSearchtext()
             }
             this.props.dispatch({ type: "searchUpdate", payload: '' })
-            
+
         }
         let { books } = this.state
         return (
-            <div style={{ flexDirection: 'row', marginTop: '30px', marginBottom: '120px' }}>
-                <text is="x3d" style={{ marginLeft: '187px', fontSize: '31px' }}>Books <text is="x3d" style={{ fontSize: '20px', opacity: '0.5' }}>({this.state.totalElements} items)</text></text>
-                <select onChange={this.handleChangeBookSorting} style={{ marginLeft: '948px', fontSize: '20px' }}>
+            <div className="homeBar">
+                <text is="x3d" style={{ marginLeft:'220px', fontSize:'21px'}} >Books <text is="x3d" style={{  opacity:'0.5',fontSize:'21px' }}>({this.state.totalElements} items)</text></text>
+                <select className="select" onChange={this.handleChangeBookSorting} >
                     <option>Sort by relevance</option>
                     <option >Price : High to Low</option>
                     <option>Price : Low to High</option>
                     <option>Newest Arrivals</option>
                 </select>
-                <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', marginLeft: '150px', marginRight: '90px', marginBottom: '50px' }}>
+                <div className="allBooks">
                     {books.map((book, index) => (
-                        <div className="info" style={{ margin: '40px', height: '380px', width: '270px', outlineStyle: 'groove', outlineColor: '#F8F8F8', outlineWidth: 'thin' }} key={book.id} >
-
-                            <div style={{ height: '220px', width: '270px', outlineStyle: 'groove', outlineColor: '#F5F5F5', outlineWidth: '0.1px', backgroundColor: '#F5F5F5' }}>
-                                <img style={{ width: '145px', height: '180px', marginLeft: '60px', marginTop: '20px', marginBottom: '25px' }} src={book.picPath} alt="" />
+                        <div className="info"  key={book.id} >
+                            <div className="home2">
+                                <img className="homeImg" src={book.picPath} alt="" />
                             </div>
                             <br></br>
                             <div className="ellipsis">
                                 <text is="x3d" >{book.nameOfBook}</text><br></br>
                                 <text is="x3d" style={{ color: 'grey' }}>by {book.author}</text><br></br><br></br>
-                                <text is="x3d">Rs. {book.price}</text><br></br><br></br>
+                                <text is="x3d">Rs. {book.price}</text>
                             </div>
                             <div>
-                                <button style={{ backgroundColor: '#A52A2A', color: 'white', width: '110px', height: '37px', marginLeft: '18px', marginBottom: '20px', fontWeight: 'bold', borderWidth: 'thin', borderRadius: '5px' }}
+                                <button className="homeButton"
                                     onClick={() => this.handleClickAddToCart(book.id)} >ADD TO BAG</button>
-                                <button style={{ marginLeft: '13px', width: '110px', height: '37px', fontWeight: 'bold', borderWidth: 'thin', borderRadius: '5px' }}
+                                <button className="homeButton2"
                                     onClick={() => this.handleClickAddToWishlist(book.id)}>WISHLIST</button>
                             </div>
                             <div className="bookInfo">
@@ -190,15 +189,15 @@ class Home extends React.Component {
                     ))}
                 </div>
                 <div className="pagination" >
-                    <button className="page-button-view1" value={0} onClick={this.handleChangePage}>First</button> 
+                    <button className="page-button-view1" value={0} onClick={this.handleChangePage}>First</button>
                     {this.state.pageNumber < 1 ? null :
-                    <button className="page-button-view1" value={parseInt(this.state.pageNumber) -1} onClick={this.handleChangePage} >Previous</button>}
+                        <button className="page-button-view1" value={parseInt(this.state.pageNumber) - 1} onClick={this.handleChangePage} >Previous</button>}
                     {Array.from({ length: this.state.totalPages }, (v, k) => k + 1).map((index) =>
                         <button className="page-button-view" value={index - 1} onClick={(e) => this.handleChangePage(e)}>{index}</button>
                     )}
-                    {this.state.pageNumber < this.state.totalPages - 1? 
-                    <button className="page-button-view1" value={parseInt(this.state.pageNumber) + 1} onClick={this.handleChangePage}>Next</button> : null}
-                    <button className="page-button-view1" value={this.state.totalPages - 1} onClick={this.handleChangePage}>Last</button> 
+                    {this.state.pageNumber < this.state.totalPages - 1 ?
+                        <button className="page-button-view1" value={parseInt(this.state.pageNumber) + 1} onClick={this.handleChangePage}>Next</button> : null}
+                    <button className="page-button-view1" value={this.state.totalPages - 1} onClick={this.handleChangePage}>Last</button>
                 </div>
             </div>
         );

@@ -57,9 +57,9 @@ export default class PasswordSet extends Component {
         return (
             <div className="login-box">
                 <h1>Welcome to BookStore</h1>
-                <div style={{ padding: "10px", display: "flex", flexDirection: "column" }}>
-                    <input style={{ padding: "10px", margin: "5px", width: "200px" }} type="password" placeholder="New Password" onChange={(e) => this.handleSetNewPassword(e)}></input>
-                    <input style={{ padding: "10px", margin: "5px", width: "200px" }} type="password" placeholder="Confirm password" onChange={(e) => this.handleSetConfirmPassword(e)}></input>
+                <div className="password">
+                    <input className="passInput" type="password" placeholder="New Password" onChange={(e) => this.handleSetNewPassword(e)}></input>
+                    <input className="passInput" type="password" placeholder="Confirm password" onChange={(e) => this.handleSetConfirmPassword(e)}></input>
                 </div>
                 <div>
                     {this.state.confirmToggle ? 
