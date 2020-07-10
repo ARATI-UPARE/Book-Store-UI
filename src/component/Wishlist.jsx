@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 var data = new BookDataLayer();
 
 class Wishlist extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             wishlistBooks: [],
             // cartBookCount: 0
@@ -41,6 +41,25 @@ class Wishlist extends Component {
         })
     }
 
+    handleChangekAddToCart = async (e) => {
+        await data.addToCart(e, 1)
+        console.log("Arati", e)
+        this.setState({
+            toggle: true
+        })
+        await data.fetchAllCartBook(response => {
+            this.props.dispatch({ type: "cartUpdate", payload: response.length })
+        })
+        await data.removeFromWishList(e)
+        await data.fetchAllWishlistBook(response => {
+            console.log(response)
+            this.setState({
+                wishlistBooks: response
+            })
+            this.props.dispatch({ type: "wishListUpdate", payload: response.length })
+        })
+    }
+
     render() {
         return (
             localStorage.getItem("token") != null && localStorage.getItem("token") !== "undefined" ?
@@ -55,7 +74,10 @@ class Wishlist extends Component {
                                 <text is="x3d" style={{ width: '200px' }}>{book.nameOfBook}</text><br></br><br></br>
                                 <text is="x3d" style={{ opacity: '0.5' }}>by {book.author}</text><br></br>
                                 <h4>Rs. {book.price}</h4>
+                                <div style={{ display:'flex',flexDirection:'row'}}>
+                                <button className="addToCartButton" onClick={() => this.handleChangekAddToCart(book.id)}>Add To Cart</button>
                                 <button className="wishListButton" onClick={() => this.handleChangeBookRemove(book.id)} >Remove</button>
+                            </div>
                             </div>
                         </div>
                     ))}

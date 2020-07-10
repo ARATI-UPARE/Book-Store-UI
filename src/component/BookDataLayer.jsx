@@ -6,8 +6,8 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    addToCart(bookId, quantity) {
-        fetch("http://localhost:9090/home/user/cart/add-update", {
+    async addToCart(bookId, quantity) {
+        await fetch("http://localhost:9090/home/user/cart/add-update", {
             method: 'PUT',
             headers: {
                 "content-type": "Application/json",
@@ -166,8 +166,8 @@ class BookDataLayer {
             .then(res => console.log(res))
     }
 
-    isCustomerDetailsExisted(callback) {
-        fetch("http://localhost:9090/home/customer/isexisted", {
+    async isCustomerDetailsExisted(callback) {
+        await fetch("http://localhost:9090/home/customer/isexisted", {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -178,8 +178,8 @@ class BookDataLayer {
             )
     }
 
-    placeOrder(callback) {
-        fetch('http://localhost:9090/home/user/cart/orderplaced/orderid', {
+    async placeOrder(callback) {
+        await fetch('http://localhost:9090/home/user/cart/orderplaced/orderid', {
             method: 'GET',
             headers: {
                 "token": localStorage.getItem("token")
@@ -200,8 +200,8 @@ class BookDataLayer {
             .then(values => callback(values))
     }
 
-    forgotPassword(email) {
-        fetch("http://localhost:9090/api/auth/forgotpassword", {
+    async forgotPassword(email) {
+        await fetch("http://localhost:9090/api/auth/forgotpassword", {
             method: 'POST',
             body: (email)
         })
@@ -210,8 +210,8 @@ class BookDataLayer {
         ))
     }
 
-    resetPassword(password) {
-        fetch("http://localhost:9090/api/auth/resetpassword", {
+    async resetPassword(password) {
+        await fetch("http://localhost:9090/api/auth/resetpassword", {
             method: 'PUT',
             headers: {
                 "token": localStorage.getItem("token")

@@ -426,14 +426,21 @@ $quaternary-color: rgb(114, 134, 189);
     width:110px;
     height:140px;
 }
-
+.addToCartButton{
+  margin-left:450px;
+  background-color:$quaternary-color;
+  color:$secondary-color;
+  width:100px;
+  height:37px;
+  font-weight:bold;
+}
 .wishListButton{
-    margin-left:650px;
-    background-color:$quaternary-color;
-    color:$secondary-color;
-    width:100px;
-    height:37px;
-    font-weight:bold;
+  margin-left:40px;
+  background-color:$quaternary-color;
+  color:$secondary-color;
+  width:100px;
+  height:37px;
+  font-weight:bold;
 }
 
 .password{
